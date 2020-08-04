@@ -121,13 +121,15 @@ class EqualCellSpaceFlowLayout: UICollectionViewFlowLayout {
             break;
         case AlignType.right:
             nowWidth = self.collectionView!.frame.size.width - self.sectionInset.right
-            for var index in 0 ..< layoutAttributes.count{
-                index = layoutAttributes.count - 1 - index
+            let count = layoutAttributes.count
+            for var index in 0 ..< count {
+                index = count - 1 - index
                 let attributes = layoutAttributes[index]
                 var nowFrame = attributes.frame
-                nowFrame.origin.x = nowWidth - nowFrame.size.width
+                let nowItemWidth = nowFrame.size.width
+                nowFrame.origin.x = nowWidth - nowItemWidth
                 attributes.frame = nowFrame
-                nowWidth = nowWidth - nowFrame.size.width - horizontalSpace
+                nowWidth = nowWidth - nowItemWidth - horizontalSpace
             }
             break;
         }
